@@ -73,7 +73,7 @@ class GiftCardController extends Controller
 		$this->validate(request(), [
 
 			'card_number' => 'required|digits:16',
-			'amount' => 'required', 
+			'amount' => 'required',
 
 		]);
 
@@ -86,47 +86,8 @@ class GiftCardController extends Controller
 
 	public function findStats (Request $request) {
 
-		// $giftCards = GiftCard::selectRaw('SUM(amount) as total');
-		// $transactions = \DB::table('gc_transactions')->selectRaw('SUM(amount) as total');
-
-
-		// if ($request->has('startDate')) {
-		// 	$giftCards -> where('created_at', '>=', $request->startDate);
-		// 	$transactions -> where('created_at', '>=', $request->startDate);
-		// }
-			
-
-		// if ($request->has('endDate')) {
-		// 	$giftCards -> where('created_at', '<=', $request->endDate);
-		// 	$transactions -> where('created_at', '<=', $request->endDate);
-		// }
-
-			
-		// $giftCards = $giftCards->first();
-
-
-		// $positiveTransactions = $transactions->where ('amount', '>', 0)->first();
-		//$negativeTransactions = $transactions->where ('amount', '<', 0)->first();
-
     	return view('giftcards.stats');
 
 	}
 
-	// public function exportStats (Request $request) {
-
-	// 	if ($request->ajax()) {
-
-	// 		$giftCards = GiftCard::selectRaw('SUM(amount) as total')
-
-	// 		->where('created_at', '>=', $request->startDate)
-
-	// 		//->where('created_at', '<=', 'end')
-
-	// 		->first();
-
-	// 	}
-
-	// 	return view('giftcards.stats', compact('giftCards'));
-
-	// }
 }

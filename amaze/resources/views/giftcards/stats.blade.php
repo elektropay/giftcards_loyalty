@@ -53,7 +53,27 @@
 		
 
 		<div class = "s-8 line centered"> Total Available: <span class = "right">{{ number_format($totalBought + $totalUsed, 2) }} $</span></div>
-		
+
+
+		@if($numberOfCards != 0)
+		<div class = "s-8 line centered"> Average Bought: <span class = "right">{{ number_format(($totalBought / $numberOfCards), 2) }} $</span></div>
+		@else 
+		<div class = "s-8 line centered"> Average Bought: <span class = "right"> 0 $</span></div>
+		@endif
+
+
+		@if($numberOfCards != 0)
+		<div class = "s-8 line centered"> Average Used: <span class = "right">{{ number_format((-$totalUsed / $numberOfCards), 2) }} $</span></div>
+		@else 
+		<div class = "s-8 line centered"> Average Used: <span class = "right"> 0 $</span></div>
+		@endif
+
+
+		@if($numberOfCards != 0)
+		<div class = "s-8 line centered"> Average Available: <span class = "right">{{ number_format(($totalBought + $totalUsed) / $numberOfCards, 2) }} $</span></div>
+		@else 
+		<div class = "s-8 line centered"> Average Available: <span class = "right"> 0 $</span></div>
+		@endif
 
 		<form method="GET" action=''>
 	  		

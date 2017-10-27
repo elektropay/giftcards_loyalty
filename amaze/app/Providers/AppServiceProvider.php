@@ -14,14 +14,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $var = \App\GiftCard::archives();
-        view()->share('archives', $var);
-
         $totalBought = \App\GiftCard::getTotalBought();
         view()->share('totalBought', $totalBought);
 
         $totalUsed = \App\GiftCard::getTotalUsed();
         view()->share('totalUsed', $totalUsed);
+
+        $numberOfCards = \App\GiftCard::getNumberOfCards();
+        view()->share('numberOfCards', $numberOfCards);
 
     }
 

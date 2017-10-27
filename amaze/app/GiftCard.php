@@ -60,7 +60,6 @@ class GiftCard extends Model
 		$totalStartAmount = static::selectRaw('SUM(amount) as total');
 
 
-
 		if (\Request::filled('startDate')) {
 			$totalStartAmount->where('created_at', '>=', request('startDate'));
 		}
@@ -103,11 +102,6 @@ class GiftCard extends Model
 
 			->where('amount', '<', 0);
 
-			// ->where('created_at', '>=', request('startDate'))
-
-			// ->where('created_at', '<=', request('endDate'))
-
-			//->first();
 
 		if (\Request::filled('startDate')) {
 			$totalDecreaseAmount->where('created_at', '>=', request('startDate'));
@@ -120,6 +114,25 @@ class GiftCard extends Model
 		$totalDecreaseAmount = $totalDecreaseAmount->first();
 
 		return number_format($totalDecreaseAmount->total, 2);	
+
+	}
+
+	public static function getNumberOfCards () {
+
+		//the total amount that was added to the gift cards
+		$numberOfCards = \DB::table('gift_cards');
+
+		if (\Request::filled('startDate')) {
+			$numberOfCards->where('created_at', '>=', request('startDate'));
+		}
+
+		if (\Request::filled('endDate')) {
+			$numberOfCards->where('created_at', '<=', request('endDate'));
+		}
+
+		$numberOfCards = $numberOfCards->count();
+
+		return $numberOfCards;	
 
 	}
 
