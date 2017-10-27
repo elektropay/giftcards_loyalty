@@ -1,0 +1,127 @@
+body {
+	background: #777;
+	font-family: Helvetica;
+}
+
+#navbar {
+	
+	width: 100vw;
+	height: 3em;
+	background: #444;
+
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.1);
+
+}
+
+.navbar-element {
+	
+	width: 5em;
+	height: 3em;
+	display: inline-block;
+	line-height: 3em;
+	text-align: center;
+
+}
+
+.rounded {
+	border-radius: 0.25em;
+}
+
+.rounded-left {
+	
+	border-top-left-radius: 0.25em;
+	border-bottom-left-radius: 0.25em;
+
+}
+
+.rounded-right {
+
+	border-top-right-radius: 0.25em;
+	border-bottom-right-radius: 0.25em;
+
+}
+
+.navbar-link {
+
+	background: #666;
+
+}
+
+.btn {
+
+	padding:0;
+	margin:0;
+	text-decoration: none;
+	text-align: center;
+
+	height: 2em;
+	font-size: 1em;
+	line-height: 2em;
+
+	background-color: #ccc;
+
+}
+
+.line {
+	
+	height: 2em;
+	font-size: 1em;
+	line-height: 2em;
+
+}
+
+.title {
+
+	font-size: 1.5em;
+
+}
+
+.transaction-window {
+
+	height: 8em;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	
+	background-color: #fff;
+
+	padding: 1em;
+
+	text-align: left;
+
+
+}
+
+.error-panel {
+	
+	background-color: red;
+	padding: 1em;
+
+	text-align: left;
+
+}
+
+.small-space {
+	
+	width: 100%;
+	height: 0.5em;
+	display: block;
+
+}
+
+.space {
+	
+	width: 100%;
+	height: 1em;
+	display: block;
+
+}
+
+.big-space {
+	
+	width: 100%;
+	height: 2em;
+	display: block;
+
+}
