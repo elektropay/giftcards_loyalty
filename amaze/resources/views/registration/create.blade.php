@@ -25,7 +25,7 @@
 	  			<input class = "s-12 line rounded" type ="password" id = "password_confirmation" name = "password_confirmation" placeholder = "Confirm Password" required>
 	  			<div class = "space"></div>
 
-	  			<button class = "s-12 line rounded" type="submit">Register</button>
+	  			<button class = "s-12 line rounded blue" type="submit">Register</button>
 
 	  			@include ('layouts.errors')
 

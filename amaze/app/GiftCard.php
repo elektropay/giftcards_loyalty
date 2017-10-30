@@ -17,9 +17,21 @@ class GiftCard extends Model
 
 	}
 
+	public function user () {
+
+		return $this->belongsTo(User::class, 'user_id');
+
+	}
+
 	public function addTransaction ($amount) {
 
-		$this->transactions()->create(compact('amount'));
+		$this->transactions()->create([
+
+			'amount' => $amount,
+
+			'user_id' => auth()->user()->id
+
+			]);
 
 	}
 
@@ -68,13 +80,18 @@ class GiftCard extends Model
 			$totalStartAmount->where('created_at', '<=', request('endDate'));
 		}
 
+		if (\Request::filled('location')) {
+			$totalStartAmount->whereHas('user', function ($query) {
+			    $query->where('name', '=', request('location'));
+			});
+		}
+
 		$totalStartAmount =	$totalStartAmount ->first();
 
 
-		//the total amount that was added to the gift cards
-		$totalIncreaseAmount = \DB::table('gc_transactions')
 
-			->selectRaw('SUM(amount) as total')
+		//the total amount that was added to the gift cards
+		$totalIncreaseAmount = \App\gcTransaction::selectRaw('SUM(amount) as total')
 
 			->where('amount', '>', 0);
 
@@ -86,7 +103,15 @@ class GiftCard extends Model
 			$totalIncreaseAmount->where('created_at', '<=', request('endDate'));
 		}
 
+		if (\Request::filled('location')) {
+			$totalIncreaseAmount->whereHas('user', function ($query) {
+			    $query->where('name', '=', request('location'));
+			});
+		}
+
 		$totalIncreaseAmount = $totalIncreaseAmount ->first();
+
+
 
 		return number_format($totalStartAmount->total + $totalIncreaseAmount->total, 2);
 			
@@ -96,9 +121,7 @@ class GiftCard extends Model
 	public static function getTotalUsed () {
 
 		//the total amount that was added to the gift cards
-		$totalDecreaseAmount = \DB::table('gc_transactions')
-
-			->selectRaw('SUM(amount) as total')
+		$totalDecreaseAmount = \App\gcTransaction::selectRaw('SUM(amount) as total')
 
 			->where('amount', '<', 0);
 
@@ -111,6 +134,12 @@ class GiftCard extends Model
 			$totalDecreaseAmount->where('created_at', '<=', request('endDate'));
 		}
 
+		if (\Request::filled('location')) {
+			$totalDecreaseAmount->whereHas('user', function ($query) {
+			    $query->where('name', '=', request('location'));
+			});
+		}
+
 		$totalDecreaseAmount = $totalDecreaseAmount->first();
 
 		return number_format($totalDecreaseAmount->total, 2);	
@@ -120,7 +149,7 @@ class GiftCard extends Model
 	public static function getNumberOfCards () {
 
 		//the total amount that was added to the gift cards
-		$numberOfCards = \DB::table('gift_cards');
+		$numberOfCards = \App\gcTransaction::selectRaw('SUM(amount) as total');
 
 		if (\Request::filled('startDate')) {
 			$numberOfCards->where('created_at', '>=', request('startDate'));
@@ -128,6 +157,12 @@ class GiftCard extends Model
 
 		if (\Request::filled('endDate')) {
 			$numberOfCards->where('created_at', '<=', request('endDate'));
+		}
+
+		if (\Request::filled('location')) {
+			$numberOfCards->whereHas('user', function ($query) {
+			    $query->where('name', '=', request('location'));
+			});
 		}
 
 		$numberOfCards = $numberOfCards->count();

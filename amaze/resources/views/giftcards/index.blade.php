@@ -15,7 +15,7 @@
 	  			<div class = "space"></div>
 
 		  		<a href = '/amaze/public/giftcards/create' class = "s-6 inline-block btn left rounded-left" >Create</a
-		  		><button class = "s-6 inline-block btn rounded-right" type="submit">Find</button>
+		  		><button class = "s-6 inline-block btn rounded-right blue" type="submit">Find</button>
 
 	  			@include ('layouts.errors')
 

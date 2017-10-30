@@ -4,6 +4,8 @@
 
     <title>Amaze Cards</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Oswald" rel="stylesheet">
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.easy-pie-chart/1.0.1/jquery.easy-pie-chart.css">
    

@@ -1,12 +1,13 @@
 body {
-  background: #777;
-  font-family: Helvetica;
+  background: #bdc3c7;
+  font-family: 'Oswald', sans-serif;
+  color: #2c3e50;
 }
 
 #navbar {
   width: 100vw;
   height: 3em;
-  background: #444;
+  background: #2c3e50;
   -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
 }
@@ -17,6 +18,11 @@ body {
   display: inline-block;
   line-height: 3em;
   text-align: center;
+  color: #bdc3c7;
+}
+
+.navbar-element a {
+  color: #bdc3c7;
 }
 
 .rounded {
@@ -33,10 +39,6 @@ body {
   border-bottom-right-radius: 0.25em;
 }
 
-.navbar-link {
-  background: #666;
-}
-
 .btn {
   padding: 0;
   margin: 0;
@@ -45,17 +47,18 @@ body {
   height: 2em;
   font-size: 1em;
   line-height: 2em;
-  background-color: #ccc;
 }
 
 .line {
   height: 2em;
   font-size: 1em;
   line-height: 2em;
+  font-family: 'Oswald', sans-serif;
 }
 
 .title {
   font-size: 1.5em;
+  font-family: 'Droid Sans', sans-serif;
 }
 
 .transaction-window {
@@ -65,12 +68,35 @@ body {
   background-color: #fff;
   padding: 1em;
   text-align: left;
+  border: 1px solid #95a5a6;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  font-weight: normal;
+  text-align: left;
+  font-size: 0.95em;
+}
+
+table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+tabletr:nth-child(odd) {
+  background-color: #fff;
+}
+
+table td {
+  padding: 0.2em;
 }
 
 .error-panel {
-  background-color: red;
+  background-color: #e74c3c;
   padding: 1em;
   text-align: left;
+  color: #ecf0f1;
 }
 
 .small-space {

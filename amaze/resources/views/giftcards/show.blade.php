@@ -4,11 +4,20 @@
 
 	<div class = "window rounded">
 
-		<div class = "">
-			Card #: {{ $giftCard->card_number }}
+		<form method="GET" action='/amaze/public/giftcards/{{$giftCard->id}}/destroy'>
+	  		<button class = "s-2 rounded red" type="submit" value="delete">Delete</button>
+		</form>
+
+		<div class = "space"></div>
+		<div class = "left">
+			# {{ $giftCard->card_number }}
 		</div>
 
-		<div class = "small-space"></div>
+		<div class = "right">
+			Creator: {{$giftCard->user->name}}
+		</div>
+
+		<div class = "line"></div>
 
 		<div class = "title line">
 			Current Balance: <strong>{{ number_format($giftCard->transactions->sum('amount') + $giftCard->amount, 2) }} $</strong>
@@ -24,7 +33,7 @@
 		  		<input class = "s-12 line rounded"type="text" name="amount" placeholder="New Transaction Amount" required>
 		  		<div class = "space"></div>
 
-		  		<button class = "s-12 line rounded" type="submit">Add Transaction</button>
+		  		<button class = "s-12 line rounded blue" type="submit">Add Transaction</button>
 
 			</form>
 		</div>
@@ -33,41 +42,69 @@
 
 		<div class = "space"></div>
 
-		<ul class = "transaction-window">
+		<div class = "transaction-window rounded">
 
 			<div class = "small-space"></div>
 
-			<li class = "text-centered">
+			<div class = "text-centered">
 				<strong>Transaction History</strong>
-			</li>
-
+			</div>
 
 			<div class = "space"></div>
 
-			<li>
-				
-				Created {{ $giftCard->created_at->diffForHumans() }} : &nbsp;
-				
-				<span class = "right">{{ number_format($giftCard->amount, 2) }} $</span>
-				<div class = "small-space"></div>
+			<table class = "s-12">
 
-			</li>
+<!-- 				<tr>
 
-		@foreach ($giftCard->transactions as $transaction)
+					<th class = "s-2">X</th>
+					<th class = "s-6">Amount</th>
+					<th class = "s-4">Creator</th>
+					<th class = "s-4">Date</th>
 
-			<li>
+				</tr>	 -->
 
-			
-				Modified {{ $transaction->created_at->diffForHumans() }} : &nbsp;
+				<tr>
 
-				<span class = "right">{{ number_format($transaction->amount, 2) }} $</span>
+					
+					<th class = "s-3">Amount</th>
+					<th class = "s-5">Location</th>
+					<th class = "s-3">Date</th>
+					<th class = "s-2"></th>
 
-				<div class = "small-space"></div>
+				</tr>	
 
-			</li>
+				<tr>
 
-		@endforeach
+					
+					<td>{{ number_format($giftCard->amount, 2) }} $</td>
+					<td>{{ $giftCard->user->name }}</td>
+					<td>{{ $giftCard->created_at->format('d/m/Y') }}</td>
+					<td><button class = "s-10 rounded btn" type="submit" value="delete">-</button></td>
 
-		</ul>
+				</tr>	
+
+				@foreach ($giftCard->transactions as $transaction)
+
+					<tr>
+						<td>{{ number_format($transaction->amount, 2) }} $</td>
+						<td>{{ $transaction->user->name }}</td>
+						<td>{{ $transaction->created_at->format('d/m/Y') }}</td>
+						<td>
+
+							<form method="GET" action='/amaze/public/giftcards/{{$giftCard->id}}/transactions/{{$transaction->id}}/destroy'>
+						  		<button class = "s-10 rounded red btn" type="submit" value="delete">x</button>
+							</form>
+
+						</td>
+
+					</tr>	
+
+				@endforeach
+
+			</table>
+
+		</div>
+
+		<div class = "space"></div>
 
 @endsection

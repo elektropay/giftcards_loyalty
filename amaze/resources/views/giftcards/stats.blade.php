@@ -34,8 +34,8 @@
 
 		@if($totalBought != 0)
 
-			<div class="chart centered text-centered" data-percent='73'>
-				<span>{{number_format((($totalBought + $totalUsed) / $totalBought) * 100, 2)}}</span>%
+			<div class="chart centered text-centered" data-percent='{{number_format(100 - (($totalBought + $totalUsed) / $totalBought) * 100, 2)}}'>
+				<span>{{number_format(100 - (($totalBought + $totalUsed) / $totalBought) * 100, 2)}}</span>%
 			</div>
 
 		@else 
@@ -77,12 +77,12 @@
 
 		<form method="GET" action=''>
 	  		
-	  		<input id = "user-id" class = "s-12 line rounded" type="text" name="amount" placeholder="Location ID" required>
+	  		<input id = "user-id" class = "s-12 line rounded" type="text" name="location" placeholder="Location Name" required>
 	  		<input id = "start-date" class = "s-12 line rounded" type="text" name="startDate" placeholder="Start Date" required>
 	  		<input id = "end-date" class = "s-12 line rounded" type="text" name="endDate" placeholder="End Date" required>
 	  		<div class = "space"></div>
 
-	  		<button class = "s-12 line rounded" type="submit">Refine Search</button>
+	  		<button class = "s-12 line rounded blue" type="submit">Update Results</button>
 	  		<div id = "ajaxResponse"></div>
 
 		</form>

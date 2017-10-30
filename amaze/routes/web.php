@@ -27,6 +27,8 @@ Route::get('/', function(){
 	
 });
 
+Route::get('/giftcards/{giftCard}/destroy', 'GiftCardController@destroy');
+
 Route::get('/giftcards', 'GiftCardController@index')->name('home');
 
 Route::get('/giftcards/stats', 'GiftCardController@findStats');
@@ -41,8 +43,8 @@ Route::get('/giftcards/{giftCard}', 'GiftCardController@show');
 
 
 
-
 Route::post('/giftcards/{giftCard}/transactions', 'gcTransactionController@store');
+Route::get('/giftcards/{giftCard}/transactions/{transaction}/destroy', 'gcTransactionController@destroy');
 
 
 

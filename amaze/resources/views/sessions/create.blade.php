@@ -19,7 +19,7 @@
 	  			<input class = "s-12 line rounded" type ="password" id = "password" name = "password" placeholder = "Password" required>
 	  			<div class = "space"></div>
 
-	  			<button class = "s-12 line rounded" type="submit">Login</button>
+	  			<button class = "s-12 line rounded blue" type="submit">Login</button>
 
 	  			@include ('layouts.errors')
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\GiftCard;
+use App\gcTransaction;
 
 use Carbon\Carbon;
 
@@ -60,6 +61,7 @@ class GiftCardController extends Controller
 		    return view('giftcards.show', compact('giftCard'));
 
 		}
+
 	}
 
 	public function create () {
@@ -77,16 +79,30 @@ class GiftCardController extends Controller
 
 		]);
 
-		GiftCard::create(request(['card_number', 'amount']));
+		GiftCard::create([
+
+			'card_number' => request ('card_number'),
+
+			'amount' => request ('amount'),
+
+			'user_id' => auth()->user()->id
+
+			]);
+
+
 		$card_number = request()->input('card_number');
 
 		return redirect('/giftcards/search?card_number='.$card_number);
 		
 	}
 
-	public function findStats (Request $request) {
+	public function destroy ($id) {
 
-    	return view('giftcards.stats');
+		$transactions = GiftCard::find($id)->transactions();
+		$transactions->destroy();
+		GiftCard::destroy($id);
+
+		return view('giftcards.index');
 
 	}
 

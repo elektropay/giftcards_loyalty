@@ -17,7 +17,7 @@
     		<input class = "s-12 line rounded" type="text" name="amount" placeholder="Amount" required>
         <div class = "space"></div>
 
-    		<button class = "s-12 btn rounded" type="submit">Create</button>
+    		<button class = "s-12 btn rounded blue" type="submit">Create</button>
 
   	</form>
 
