@@ -5,7 +5,8 @@
 	<div class = "window rounded">
 
 		<form method="GET" action='/amaze/public/giftcards/{{$giftCard->id}}/destroy'>
-	  		<button class = "s-2 rounded red" type="submit" value="delete">Delete</button>
+	  		<button class = "s-2 rounded red" type="submit" value="delete" 
+	  			onclick="return confirm('Are you sure you want to delete card #{{$giftCard->card_number}} and all associated transactions?')">Delete</button>
 		</form>
 
 		<div class = "space"></div>
@@ -76,7 +77,8 @@
 				<tr>
 
 					
-					<td>{{ number_format($giftCard->amount, 2) }} $</td>
+					<!-- <td>{{ number_format($giftCard->amount, 2) }} $</td> -->
+					<td>Created</td>
 					<td>{{ $giftCard->user->name }}</td>
 					<td>{{ $giftCard->created_at->format('d/m/Y') }}</td>
 					<td><button class = "s-10 rounded btn" type="submit" value="delete">-</button></td>
@@ -92,7 +94,8 @@
 						<td>
 
 							<form method="GET" action='/amaze/public/giftcards/{{$giftCard->id}}/transactions/{{$transaction->id}}/destroy'>
-						  		<button class = "s-10 rounded red btn" type="submit" value="delete">x</button>
+						  		<button class = "s-10 rounded red btn" type="submit" value="delete"
+						  		onclick="return confirm('Are you sure you want to delete this transaction?')">x</button>
 							</form>
 
 						</td>

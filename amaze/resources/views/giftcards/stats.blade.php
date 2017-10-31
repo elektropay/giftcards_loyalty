@@ -32,10 +32,10 @@
 			Gift Card Usage
 		</div>
 
-		@if($totalBought != 0)
+		@if($stats['totalBought'] != 0)
 
-			<div class="chart centered text-centered" data-percent='{{number_format(100 - (($totalBought + $totalUsed) / $totalBought) * 100, 2)}}'>
-				<span>{{number_format(100 - (($totalBought + $totalUsed) / $totalBought) * 100, 2)}}</span>%
+			<div class="chart centered text-centered" data-percent="{{number_format(100 - (($stats['totalBought'] + $stats['totalUsed']) / $stats['totalBought']) * 100, 2)}}">
+				<span>{{number_format(100 - (($stats['totalBought'] + $stats['totalUsed']) / $stats['totalBought']) * 100, 2)}}</span>%
 			</div>
 
 		@else 
@@ -46,31 +46,34 @@
 
 		@endif
 
-		<div class = "s-8 line centered"> Total Bought: <span class = "right">{{ number_format($totalBought, 2) }} $</span></div>
+		<div class = "s-8 line centered"> Number of Cards: <span class = "right"> {{$stats['numberOfCards']}}</span></div>
+
+		
+		<div class = "s-8 line centered"> Total Bought: <span class = "right">{{ number_format($stats['totalBought'], 2) }} $</span></div>
+
+
+		<div class = "s-8 line centered"> Total Used: <span class = "right">{{ number_format(-$stats['totalUsed'],2) }} $</span></div>
 		
 
-		<div class = "s-8 line centered"> Total Used: <span class = "right">{{ number_format(-$totalUsed,2) }} $</span></div>
+		<div class = "s-8 line centered"> Total Available: <span class = "right">{{ number_format($stats['totalBought'] + $stats['totalUsed'], 2) }} $</span></div>
 		
 
-		<div class = "s-8 line centered"> Total Available: <span class = "right">{{ number_format($totalBought + $totalUsed, 2) }} $</span></div>
-
-
-		@if($numberOfCards != 0)
-		<div class = "s-8 line centered"> Average Bought: <span class = "right">{{ number_format(($totalBought / $numberOfCards), 2) }} $</span></div>
+		@if($stats['numberOfCards'] != 0)
+		<div class = "s-8 line centered"> Average Bought: <span class = "right">{{ number_format(($stats['totalBought'] / $stats['numberOfCards']), 2) }} $</span></div>
 		@else 
 		<div class = "s-8 line centered"> Average Bought: <span class = "right"> 0 $</span></div>
 		@endif
 
 
-		@if($numberOfCards != 0)
-		<div class = "s-8 line centered"> Average Used: <span class = "right">{{ number_format((-$totalUsed / $numberOfCards), 2) }} $</span></div>
+		@if($stats['numberOfCards'] != 0)
+		<div class = "s-8 line centered"> Average Used: <span class = "right">{{ number_format((-$stats['totalUsed'] / $stats['numberOfCards']), 2) }} $</span></div>
 		@else 
 		<div class = "s-8 line centered"> Average Used: <span class = "right"> 0 $</span></div>
 		@endif
 
 
-		@if($numberOfCards != 0)
-		<div class = "s-8 line centered"> Average Available: <span class = "right">{{ number_format(($totalBought + $totalUsed) / $numberOfCards, 2) }} $</span></div>
+		@if($stats['numberOfCards'] != 0)
+		<div class = "s-8 line centered"> Average Available: <span class = "right">{{ number_format(($stats['totalBought'] + $stats['totalUsed']) / $stats['numberOfCards'], 2) }} $</span></div>
 		@else 
 		<div class = "s-8 line centered"> Average Available: <span class = "right"> 0 $</span></div>
 		@endif

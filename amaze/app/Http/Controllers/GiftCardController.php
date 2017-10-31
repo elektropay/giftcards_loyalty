@@ -74,23 +74,28 @@ class GiftCardController extends Controller
 
 		$this->validate(request(), [
 
-			'card_number' => 'required|digits:16',
-			'amount' => 'required',
+			'card_number' => 'required|digits:16'
+			//'amount' => 'required',
 
 		]);
 
-		GiftCard::create([
-
-			'card_number' => request ('card_number'),
-
-			'amount' => request ('amount'),
-
-			'user_id' => auth()->user()->id
-
-			]);
-
-
 		$card_number = request()->input('card_number');
+
+		 // check if the giftcard exists 
+		if (!GiftCard::where('card_number', '=', request()->input('card_number'))->exists()) {
+  			
+  			//create the gift card
+  			GiftCard::create([
+
+				'card_number' => request ('card_number'),
+
+				'amount' => 0,
+
+				'user_id' => auth()->user()->id
+
+				]);
+		
+		}
 
 		return redirect('/giftcards/search?card_number='.$card_number);
 		
@@ -98,11 +103,16 @@ class GiftCardController extends Controller
 
 	public function destroy ($id) {
 
-		$transactions = GiftCard::find($id)->transactions();
-		$transactions->destroy();
+		GiftCard::find($id)->transactions()->delete();
 		GiftCard::destroy($id);
 
 		return view('giftcards.index');
+
+	}
+
+	public function findStats () {
+
+		return view('giftcards.stats');
 
 	}
 

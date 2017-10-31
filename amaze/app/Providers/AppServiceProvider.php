@@ -14,14 +14,27 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $totalBought = \App\GiftCard::getTotalBought();
-        view()->share('totalBought', $totalBought);
+        //pass the stats only to the stats view
+        view()->composer('giftcards.stats', function ($view) {
 
-        $totalUsed = \App\GiftCard::getTotalUsed();
-        view()->share('totalUsed', $totalUsed);
+            return $view->with ('stats', array(
 
-        $numberOfCards = \App\GiftCard::getNumberOfCards();
-        view()->share('numberOfCards', $numberOfCards);
+                'totalBought' => \App\GiftCard::getTotalBought(),
+                'totalUsed' => \App\GiftCard::getTotalUsed(),
+                'numberOfCards' => \App\GiftCard::getNumberOfCards()
+
+            ));
+
+        });
+
+        // $totalBought = \App\GiftCard::getTotalBought();
+        // view()->share('totalBought', $totalBought);
+
+        // $totalUsed = \App\GiftCard::getTotalUsed();
+        // view()->share('totalUsed', $totalUsed);
+
+        // $numberOfCards = \App\GiftCard::getNumberOfCards();
+        // view()->share('numberOfCards', $numberOfCards);
 
     }
 
