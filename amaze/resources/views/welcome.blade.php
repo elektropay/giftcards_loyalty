@@ -11,7 +11,7 @@
 		<div class = "small-space"></div>
 
 	    <a class = "btn s-6 inline-block text-centered blue rounded-left" href="/amaze/public/giftcards">Gift Cards</a
-	   	><a class = "btn s-6 inline-block text-centered blue rounded-right" href="/amaze/public/loyalty">Loyalty</a>
+	   	><a class = "btn s-6 inline-block text-centered blue rounded-right" href="/amaze/public/loyaltycards">Loyalty</a>
 	
 	</div>
 

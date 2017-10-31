@@ -19,8 +19,8 @@ class AppServiceProvider extends ServiceProvider
 
             return $view->with ('stats', array(
 
-                'totalBought' => \App\GiftCard::getTotalBought(),
-                'totalUsed' => \App\GiftCard::getTotalUsed(),
+                'totalBought' => \App\GiftCard::getTotalBought("gc_transactions"),
+                'totalUsed' => \App\GiftCard::getTotalUsed("gc_transactions"),
                 'numberOfCards' => \App\GiftCard::getNumberOfCards()
 
             ));

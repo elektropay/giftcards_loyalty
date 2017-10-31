@@ -48,6 +48,27 @@ Route::get('/giftcards/{giftCard}/transactions/{transaction}/destroy', 'gcTransa
 
 
 
+Route::get('/loyaltycards/{loyaltyCard}/destroy', 'LoyaltyCardController@destroy');
+
+Route::get('/loyaltycards', 'LoyaltyCardController@index');
+
+Route::get('/loyaltycards/stats', 'LoyaltyCardController@findStats');
+
+Route::get('/loyaltycards/exportStats', 'LoyaltyCardController@exportStats');
+
+Route::get('/loyaltycards/create', 'LoyaltyCardController@create');
+
+Route::post('/loyaltycards', 'LoyaltyCardController@store');
+
+Route::get('/loyaltycards/{loyaltyCard}', 'LoyaltyCardController@show');
+
+
+
+Route::post('/loyaltycards/{loyaltyCard}/transactions', 'LoyaltyTransactionController@store');
+Route::get('/loyaltycards/{loyaltyCard}/transactions/{transaction}/destroy', 'LoyaltyTransactionController@destroy');
+
+
+
 Route::get('/register', 'RegistrationController@create');
 
 Route::post('/register', 'RegistrationController@store');

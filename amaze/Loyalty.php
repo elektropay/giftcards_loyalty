@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\Card;
 
-class GiftCard extends Card
+class Loyalty extends Card
 {
 
 	public function transactions () {

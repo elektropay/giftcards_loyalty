@@ -1,1 +1,0 @@
-<li>{{ $giftCard->amount }}</li>

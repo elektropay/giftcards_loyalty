@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
 use App\Card;
+use App\LoyaltyTransaction;
 
-class GiftCard extends Card
+class LoyaltyCard extends Card
 {
 
 	public function transactions () {
 
-		return $this->hasMany(gcTransaction::class);
+		return $this->hasMany(LoyaltyTransaction::class);
 
 	}
 
