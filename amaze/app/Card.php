@@ -11,6 +11,11 @@ class Card extends Model
     
 	protected $guarded = [];
 
+	public function client () {
+
+		return $this->belongsTo(Client::class, 'client_id');
+
+	}
 
 	public function user () {
 
@@ -27,6 +32,18 @@ class Card extends Model
 			'user_id' => auth()->user()->id
 
 			]);
+
+	}
+
+	public function balance () {
+
+		return $this->amount + $this->transactions()->selectRaw('SUM(amount) as total')->first()->total;
+
+	}
+
+	public function registerClient ($clientID) {
+
+		$this->update(['client_id' => $clientID]);
 
 	}
 
@@ -63,7 +80,7 @@ class Card extends Model
 
 		if (\Request::filled('location')) {
 			$totalStartAmount->whereHas('user', function ($query) {
-			    $query->where('name', '=', request('location'));
+			    $query->where('username', '=', request('location'));
 			});
 		}
 
@@ -86,7 +103,7 @@ class Card extends Model
 
 		if (\Request::filled('location')) {
 			$totalIncreaseAmount->whereHas('user', function ($query) {
-			    $query->where('name', '=', request('location'));
+			    $query->where('username', '=', request('location'));
 			});
 		}
 
@@ -117,7 +134,7 @@ class Card extends Model
 
 		if (\Request::filled('location')) {
 			$totalDecreaseAmount->whereHas('user', function ($query) {
-			    $query->where('name', '=', request('location'));
+			    $query->where('username', '=', request('location'));
 			});
 		}
 
@@ -142,7 +159,7 @@ class Card extends Model
 
 		if (\Request::filled('location')) {
 			$numberOfCards->whereHas('user', function ($query) {
-			    $query->where('name', '=', request('location'));
+			    $query->where('username', '=', request('location'));
 			});
 		}
 

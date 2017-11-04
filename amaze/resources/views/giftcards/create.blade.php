@@ -7,7 +7,7 @@
     <h1 class = "title"> New Gift Card </h1>
     <div class = "big-space"></div>
 
-  	<form method="POST" action='/amaze/public/giftcards'>
+  	<form method="POST" action='/giftcards'>
 
   		{{ csrf_field() }}
 

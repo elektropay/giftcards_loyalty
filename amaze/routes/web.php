@@ -24,7 +24,6 @@ Route::get('/', function(){
 
 	}
 
-	
 });
 
 Route::get('/giftcards/{giftCard}/destroy', 'GiftCardController@destroy');
@@ -47,6 +46,9 @@ Route::post('/giftcards/{giftCard}/transactions', 'gcTransactionController@store
 Route::get('/giftcards/{giftCard}/transactions/{transaction}/destroy', 'gcTransactionController@destroy');
 
 
+Route::post('/giftcards/{giftCard}/client', 'ClientController@registerToGiftCard');
+
+
 
 Route::get('/loyaltycards/{loyaltyCard}/destroy', 'LoyaltyCardController@destroy');
 
@@ -66,6 +68,9 @@ Route::get('/loyaltycards/{loyaltyCard}', 'LoyaltyCardController@show');
 
 Route::post('/loyaltycards/{loyaltyCard}/transactions', 'LoyaltyTransactionController@store');
 Route::get('/loyaltycards/{loyaltyCard}/transactions/{transaction}/destroy', 'LoyaltyTransactionController@destroy');
+
+
+Route::post('/loyaltycards/{loyaltyCard}/client', 'ClientController@registerToLoyaltyCard');
 
 
 

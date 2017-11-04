@@ -4,9 +4,9 @@
 
 	<div class = "window rounded">
 
-		<form method="GET" action='/amaze/public/giftcards/{{$giftCard->id}}/destroy'>
+		<form method="GET" action='/giftcards/{{$giftCard->id}}/destroy'>
 	  		<button class = "s-2 rounded red" type="submit" value="delete" 
-	  			onclick="return confirm('Are you sure you want to delete card #{{$giftCard->card_number}} and all associated transactions?')">Delete</button>
+	  			onclick="return confirm('Are you sure you want to delete card #{{$giftCard->card_number}} and all associated transactions from the database?  This data can no longer be retived.')">Delete</button>
 		</form>
 
 		<div class = "space"></div>
@@ -15,26 +15,27 @@
 		</div>
 
 		<div class = "right">
-			Creator: {{$giftCard->user->name}}
+			Creator: {{$giftCard->user->username}}
 		</div>
 
 		<div class = "line"></div>
 
 		<div class = "title line">
-			Current Balance: <strong>{{ number_format($giftCard->transactions->sum('amount') + $giftCard->amount, 2) }} $</strong>
+			Current Balance: <strong>{{ number_format($giftCard->balance(), 2) }} $</strong>
 		</div>
 
 		<div class = "small-space"></div>
 
 		<div>
-			<form method="POST" action='/amaze/public/giftcards/{{ $giftCard->id }}/transactions'>
+			<form method="POST" action='/giftcards/{{ $giftCard->id }}/transactions'>
 
 				{{ csrf_field() }}
 		  		
 		  		<input class = "s-12 line rounded"type="text" name="amount" placeholder="New Transaction Amount" required>
 		  		<div class = "space"></div>
 
-		  		<button class = "s-12 line rounded blue" type="submit">Add Transaction</button>
+		  		<button class = "s-6 line rounded-left" type="submit" name="sign" value="+"> Add </button
+		  		><button class = "s-6 line rounded-right blue" type="submit" name="sign" value="-"> Subtract </button>
 
 			</form>
 		</div>
@@ -79,7 +80,7 @@
 					
 					<!-- <td>{{ number_format($giftCard->amount, 2) }} $</td> -->
 					<td>Created</td>
-					<td>{{ $giftCard->user->name }}</td>
+					<td>{{ $giftCard->user->username }}</td>
 					<td>{{ $giftCard->created_at->format('d/m/Y') }}</td>
 					<td><button class = "s-10 rounded btn" type="submit" value="delete">-</button></td>
 
@@ -89,13 +90,13 @@
 
 					<tr>
 						<td>{{ number_format($transaction->amount, 2) }} $</td>
-						<td>{{ $transaction->user->name }}</td>
+						<td>{{ $transaction->user->username }}</td>
 						<td>{{ $transaction->created_at->format('d/m/Y') }}</td>
 						<td>
 
-							<form method="GET" action='/amaze/public/giftcards/{{$giftCard->id}}/transactions/{{$transaction->id}}/destroy'>
+							<form method="GET" action='/giftcards/{{$giftCard->id}}/transactions/{{$transaction->id}}/destroy'>
 						  		<button class = "s-10 rounded red btn" type="submit" value="delete"
-						  		onclick="return confirm('Are you sure you want to delete this transaction?')">x</button>
+						  		onclick="return confirm('Are you sure you want to delete this transaction from the database? This data can no longer be retieved.')">x</button>
 							</form>
 
 						</td>

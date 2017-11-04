@@ -56,7 +56,7 @@ class LoyaltyCardController extends Controller
 
 
 		if($loyaltyCards->isEmpty()) {
-			return view('loyaltycards.index', compact('loyaltyCard'));
+			return redirect('/loyaltycards')->withInput();
 		} else {
 		    return view('loyaltycards.show', compact('loyaltyCard'));
 

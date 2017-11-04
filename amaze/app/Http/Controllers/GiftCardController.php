@@ -56,10 +56,9 @@ class GiftCardController extends Controller
 
 
 		if($giftCards->isEmpty()) {
-			return view('giftcards.index', compact('giftCard'));
+			return redirect('/giftcards')->withInput();
 		} else {
 		    return view('giftcards.show', compact('giftCard'));
-
 		}
 
 	}

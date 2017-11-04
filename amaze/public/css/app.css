@@ -99,6 +99,13 @@ table td {
   color: #ecf0f1;
 }
 
+.info {
+  background-color: #e74c3c;
+  padding: 1em;
+  text-align: left;
+  color: #ecf0f1;
+}
+
 .small-space {
   width: 100%;
   height: 0.5em;

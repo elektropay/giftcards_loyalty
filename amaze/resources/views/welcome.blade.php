@@ -5,7 +5,7 @@
 	<div class = "window s-6 rounded">
 
 		<h1 class = "title line text-centered">
-			Logged in as {{ Auth::user()->name }}.
+			Logged in as {{ Auth::user()->username }}.
 		</h1>
 
 		<div class = "small-space"></div>

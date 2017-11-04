@@ -27,6 +27,19 @@ class AppServiceProvider extends ServiceProvider
 
         });
 
+                //pass the stats only to the stats view
+        view()->composer('loyaltycards.stats', function ($view) {
+
+            return $view->with ('stats', array(
+
+                'totalBought' => \App\LoyaltyCard::getTotalBought("gc_transactions"),
+                'totalUsed' => \App\LoyaltyCard::getTotalUsed("gc_transactions"),
+                'numberOfCards' => \App\LoyaltyCard::getNumberOfCards()
+
+            ));
+
+        });
+
         // $totalBought = \App\GiftCard::getTotalBought();
         // view()->share('totalBought', $totalBought);
 
